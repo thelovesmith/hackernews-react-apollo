@@ -7,6 +7,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+<<<<<<< HEAD
 
 const httpLink = createHttpLink({
     uri: 'http://localhost:4000/'
@@ -22,6 +23,26 @@ ReactDOM.render(
     </ApolloProvider>
 , document.getElementById('root'));
 
+=======
+
+const httpLink = createHttpLink({
+    uri: 'http//localhost:4000'
+})
+ 
+const client = new ApolloClient({
+    link: httpLink,
+    cache: new InMemoryCache()
+})
+
+
+
+ReactDOM.render(
+    <ApolloProvider client={client}>
+        <App />
+    </ApolloProvider>,
+    document.getElementById('root')
+);
+>>>>>>> 7033c955d02c6381fb1794c49f49ffad884996a3
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
