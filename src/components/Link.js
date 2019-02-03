@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { Card } from 'semantic-ui-react'
 
 
 class Link extends Component {
     render() {
         return (
             <div>
-                <div>
+                <Card>
                     {this.props.link.description} ({this.props.link.url})
-                </div>
+                </Card>
             </div>
         )
     }
