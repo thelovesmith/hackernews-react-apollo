@@ -24,16 +24,16 @@ class TitleHeader extends Component {
                             </Link>
                         </MenuItem>
                     )}
-                    <MenuItem position="" >
+                    <MenuItem position='right' >
                         {authToken ? (
-                            <Link onClick={() => {
+                            <Link to='/' onClick={() => {
                                     localStorage.removeItem(AUTH_TOKEN)
                                     this.props.history.push(`/`)
                                 }}>
                                 Logout
                             </Link>
                         ) : (
-                            <Link to='/Login' >
+                            <Link to='/login' >
                                 Login
                             </Link>
                         )}
