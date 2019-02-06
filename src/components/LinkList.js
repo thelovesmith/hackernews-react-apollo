@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import  Link  from './Link';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
+import { Feed } from 'semantic-ui-react';
 
 const FEED_QUERY = gql`
     {
@@ -27,9 +28,9 @@ class LinkList extends Component {
                     const linksToRender = data.feed.links
 
                     return (
-                        <div>
+                        <Feed>
                             {linksToRender.map(link => <Link key={link.id} link={link} />)}
-                        </div>
+                        </Feed>
                     )
                 }}
             </Query>
