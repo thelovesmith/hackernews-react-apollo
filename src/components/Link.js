@@ -4,6 +4,25 @@ import { AUTH_TOKEN } from '../constants';
 import { timeDifferenceForDate } from '../utils';
 
 
+const VOTE_MUTATION = gql`
+    mutation VoteMutation($linkId: Id!) {
+        vote(linkId: $linkId) {
+            id 
+            link { 
+                votes {
+                    id 
+                    user {
+                        id
+                    }
+                }
+            }
+            user {
+                id
+            }
+        }
+    }
+`
+
 class Link extends Component {
     render() {
         const authToken = localStorage.getItem(AUTH_TOKEN);
@@ -13,9 +32,14 @@ class Link extends Component {
                     <Feed.Meta >
                         <span className="gray">{this.props.index + 1}.</span>
                         {authToken && (
-                            <Feed.Like  onClick={() => this._voteForLink()}>
+                            <Mutation mutation={VOTE_MUTATION} variables={{inkId: this.props.link.id}} >
+                                {voteMutation => (
+
+                            <Feed.Like  onClick={voteMutation}>
                                 ▲
                             </Feed.Like>
+                                )}
+                            </Mutation>
                         )}
                     </Feed.Meta>
                     <Feed.Summary style={{ padding: '10px' }}>
