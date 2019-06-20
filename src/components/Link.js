@@ -27,6 +27,7 @@ const VOTE_MUTATION = gql`
 class Link extends Component {
     render() {
         const authToken = localStorage.getItem(AUTH_TOKEN);
+        console.log(this.props, 'props')
         return (
             <Feed.Event style={{ padding: '10px 0px 10px 0px', backgroundColor: '#AEFFB4', margin: '5px 0 5px 0' }}>
                 <Feed.Content>

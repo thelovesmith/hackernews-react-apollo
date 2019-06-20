@@ -7,11 +7,16 @@ import { Feed } from 'semantic-ui-react';
 const FEED_QUERY = gql`
     {
         feed {
+            count
             links {
                 id
                 createdAt
                 description
                 url
+                postedBy{
+        id
+        name
+      }
             }
         }
     }
