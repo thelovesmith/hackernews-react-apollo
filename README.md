@@ -12,7 +12,8 @@
 + Backend:
     + graphql-yoga: Fully-featured GraphQL Server with focus on easy setup, performance & great developer experience
     + Prisma: Open-source GraphQL API layer that turns your database into a GraphQL AP   I
-
++ Why are there two GraphQL API layers in a backend architecture with Prisma?
+    + Prisma provides the database layer which offers CRUD operations. The second layer is the application layer for business logic and common workflows (like authentication).
 
 ```
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
