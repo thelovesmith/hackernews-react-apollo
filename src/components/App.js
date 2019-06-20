@@ -12,13 +12,13 @@ class App extends Component {
     return (
       <div className="center w85">
         <TitleHeader />
-        {/* <Container >
+        <Container >
           <Switch>
             <Route exact path="/" component={LinkList} />
             <Route exact path="/create" component={CreateLink} />
             <Route exact path="/login" component={Login} />
           </Switch>
-        </Container> */}
+        </Container>
       </div>
     )
   }

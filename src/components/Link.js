@@ -37,7 +37,7 @@ class Link extends Component {
                     <Feed.Summary style={{ padding: '10px'}}>
                         {this.props.link.description} 
                     <Feed.Extra className="f6 lh-copy gray">
-                        {this.props.link.votes.length} votes | Submitted by{' '}
+                            {this.props.link.votes ? this.props.link.votes.length : 0 } votes | Submitted by{' '}
                         {this.props.link.postedBy
                             ? this.props.link.postedBy.name
                             : 'Unknown'}{' '}
