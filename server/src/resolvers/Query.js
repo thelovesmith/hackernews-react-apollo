@@ -21,9 +21,13 @@ async function feed(parent, args, context) {
     first: args.first,
     orderBy: args.orderBy,
   })
+  const users= await context.prisma.users({
+
+  })
   return {
     count,
     links,
+    users,
   }
 }
 

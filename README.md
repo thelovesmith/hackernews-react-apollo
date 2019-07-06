@@ -14,8 +14,25 @@
     + Prisma: Open-source GraphQL API layer that turns your database into a GraphQL AP   I
 + Why are there two GraphQL API layers in a backend architecture with Prisma?
     + Prisma provides the database layer which offers CRUD operations. The second layer is the application layer for business logic and common workflows (like authentication).
+## Apollo
++ APOLLO ABSTRACTS AWAY ALL TH ELOWER LEVEL NETWORKIGN LOGIC 
++ Just let the Apollo Client know the end point pf your GraphQL API (i.e. localhost:4000) in an httpcreatelink in your index.js and you can make simple queries and mutations thn you instantiate ApolloClient by passing in the httpLink and a new instance of an InMemoryCache.
++ Finally you render the root component of your React app. The App is wrapped with the higher-order component ApolloProvider that gets passed the client as a prop.
 
-```
+### GraphQL API
++ Before we start the server, let’s quickly understand the main components:
+
+    + *prisma:* This directory holds all the files that relate to your Prisma setup. The Prisma client is used to access the database in your GraphQL resolvers (similar to an ORM).
+        + *prisma.yml* is the root configuration file for your Prisma project.
+        + *datamodel.prisma* defines your data model in the GraphQL Schema Definition Language (SDL). When using Prisma, the datamodel is used to describe the database schema.
+
+    + *src: *This directory holds the source files for your GraphQL server.
+        + *schema.graphql* contains your application schema. The application schema defines the GraphQL operations you can send from the frontend. We’ll take a closer look at this file in just a bit.
+        + *generated/prisma-client* contains the auto-generated Prisma client, a type-safe database access library (similar to an ORM).
+        + *resolvers *contains the resolver functions for the operations defined in the application schema.
+        + *index.js* is the entry point for your GraphQL server.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

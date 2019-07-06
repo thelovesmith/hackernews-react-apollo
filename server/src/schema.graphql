@@ -17,6 +17,7 @@ enum LinkOrderByInput {
 type Feed {
   links: [Link!]!
   count: Int!
+  users: [User!]!
 }
 
 type Mutation {

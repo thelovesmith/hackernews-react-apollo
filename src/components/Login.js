@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { AUTH_TOKEN } from '../constants';
 import { Form, Header, Button } from 'semantic-ui-react';
 import { Mutation } from 'react-apollo';
