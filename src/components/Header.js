@@ -23,6 +23,14 @@ class TitleHeader extends Component {
                                 Submit A Link
                             </Link>
                         </MenuItem>
+                        
+                    )}
+                    {authToken && (
+                        <MenuItem>
+                            <Link to="/users" className="ml1 no-underline black">
+                                Users
+                        </Link>
+                        </MenuItem>
                     )}
                     <MenuItem position='right' >
                         {authToken ? (

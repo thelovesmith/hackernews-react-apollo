@@ -3,6 +3,7 @@ import LinkList from './LinkList';
 import CreateLink from './CreateLink';
 import TitleHeader from './Header';
 import Login from './Login';
+import Users from './Users';
 import { Switch, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 
@@ -16,6 +17,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={LinkList} />
             <Route exact path="/create" component={CreateLink} />
+            <Route exact path="/users" component={Users}/>
             <Route exact path="/login" component={Login} />
           </Switch>
         </Container>

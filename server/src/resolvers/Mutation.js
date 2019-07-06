@@ -31,7 +31,7 @@ async function login(parent, args, context) {
   if (!valid) {
     throw new Error('Invalid password')
   }
-  console.log(userId, 'user id');
+  console.log(user.Id, 'user id');
   return {
     token: jwt.sign({ userId: user.id }, APP_SECRET),
     user,
