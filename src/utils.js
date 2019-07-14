@@ -1,3 +1,6 @@
+// This file is just hadnling the date for when the link was posted
+// You should eep this in mind to implement it on your own project. 
+// Also think about arranging th edate differently 
 function timeDifference(current, previous) {
     const milliSecondsPerMinute = 60 * 1000
     const milliSecondsPerHour = milliSecondsPerMinute * 60

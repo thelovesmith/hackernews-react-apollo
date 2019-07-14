@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import  Link  from './Link';
+import Link from './Link';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Feed } from 'semantic-ui-react';
 
-const FEED_QUERY = gql`
+export const FEED_QUERY = gql`
     {
         feed {
             count
@@ -24,26 +24,45 @@ const FEED_QUERY = gql`
 
 
 class LinkList extends Component {
-    render() {
-        return (
-            <Query query={FEED_QUERY}>
-                {({ loading, error, data }) => {
-                    if (loading) return <div>Fetching</div>
-                    if (error) return <div>Error</div>
+  // !this function is for upating the store using Apollo's caching
+  _updateCacheAfterVote =( store, createVote, linkId ) => {
 
-                    const linksToRender = data.feed.links
+    // !You start by reading the current state of the cached data for the FEED_QUERY from the store.
+    const data = store.readQuery({ query: FEED_QUERY});
 
-                    return (
-                        <Feed>
-                            {linksToRender.map((link, index) => (
-                                <Link key={link.id} link={link} index={index} />
-                            ))}
-                        </Feed>
-                    )
-                }}
-            </Query>
-        )
-    }
+    // !Now you’re retrieving the link that the user just voted for from that list. You’re also manipulating that link by resetting its votes to the votes that were just returned by the server.
+    const votedLink = data.feed.links.find(link => link.Id === linkId)
+    votedLink.votes = createVote.link.votes
+
+    // !Finally, you take the modified data and write it back into the store
+    store.writeQuery({query: FEED_QUERY, data})
+
+  }
+  render() {
+    return (
+      <Query query={FEED_QUERY}>
+        {({ loading, error, data }) => {
+          if (loading) return <div>Fetching</div>
+          if (error) return <div>Error</div>
+
+          const linksToRender = data.feed.links
+
+          return (
+            <Feed>
+              {linksToRender.map((link, index) => (
+                <Link 
+                  key={link.id} 
+                  link={link} 
+                  index={index} 
+                  updateStoreAfterVote = {this._updateCacheAfterVote}
+                />
+              ))}
+            </Feed>
+          )
+        }}
+      </Query>
+    )
+  }
 }
 
 export default LinkList;

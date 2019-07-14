@@ -15,9 +15,12 @@
 + Why are there two GraphQL API layers in a backend architecture with Prisma?
     + Prisma provides the database layer which offers CRUD operations. The second layer is the application layer for business logic and common workflows (like authentication).
 ## Apollo
-+ APOLLO ABSTRACTS AWAY ALL TH ELOWER LEVEL NETWORKIGN LOGIC 
++ APOLLO ABSTRACTS AWAY ALL THE LOWER LEVEL NETWORKING LOGIC 
 + Just let the Apollo Client know the end point pf your GraphQL API (i.e. localhost:4000) in an httpcreatelink in your index.js and you can make simple queries and mutations thn you instantiate ApolloClient by passing in the httpLink and a new instance of an InMemoryCache.
 + Finally you render the root component of your React app. The App is wrapped with the higher-order component ApolloProvider that gets passed the client as a prop.
++ Apollo Client also has a cool caching functionality that makes it easier to precisely determine when you want data updated on the website using [Apollo caching data](https://www.apollographql.com/docs/react/advanced/caching.html#after-mutations)
++ You can update your store as data is updating so you can display it to clients rigth away
+
 
 ### GraphQL API
 + Before we start the server, let’s quickly understand the main components:
@@ -72,33 +75,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-```

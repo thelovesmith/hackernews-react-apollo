@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// eslint-disable-next-line
 import {Card, Icon} from 'semantic-ui-react';
 
 
