@@ -13,10 +13,16 @@ export const FEED_QUERY = gql`
                 createdAt
                 description
                 url
-                postedBy{
-        id
-        name
-      }
+                postedBy {
+                  id
+                  name
+                }
+                votes {
+                  id 
+                  user {
+                    id
+                  }
+                }
             }
         }
     }
@@ -25,18 +31,16 @@ export const FEED_QUERY = gql`
 
 class LinkList extends Component {
   // !this function is for upating the store using Apollo's caching
-  _updateCacheAfterVote =( store, createVote, linkId ) => {
+  // !Now you’re retrieving the link that the user just voted for from that list. You’re also manipulating that link by resetting its votes to the votes that were just returned by the server.
+  // !You start by reading the current state of the cached data for the FEED_QUERY from the store.
+  // !Finally, you take the modified data and write it back into the store
+  _updateCacheAfterVote = (store, createVote, linkId) => {
+    const data = store.readQuery({ query: FEED_QUERY })
 
-    // !You start by reading the current state of the cached data for the FEED_QUERY from the store.
-    const data = store.readQuery({ query: FEED_QUERY});
-
-    // !Now you’re retrieving the link that the user just voted for from that list. You’re also manipulating that link by resetting its votes to the votes that were just returned by the server.
-    const votedLink = data.feed.links.find(link => link.Id === linkId)
+    const votedLink = data.feed.links.find(link => link.id === linkId)
     votedLink.votes = createVote.link.votes
 
-    // !Finally, you take the modified data and write it back into the store
-    store.writeQuery({query: FEED_QUERY, data})
-
+    store.writeQuery({ query: FEED_QUERY, data })
   }
   render() {
     return (
@@ -50,11 +54,11 @@ class LinkList extends Component {
           return (
             <Feed>
               {linksToRender.map((link, index) => (
-                <Link 
-                  key={link.id} 
-                  link={link} 
-                  index={index} 
-                  updateStoreAfterVote = {this._updateCacheAfterVote}
+                <Link
+                  key={link.id}
+                  link={link}
+                  index={index}
+                  updateStoreAfterVote={this._updateCacheAfterVote}
                 />
               ))}
             </Feed>

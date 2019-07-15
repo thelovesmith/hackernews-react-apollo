@@ -28,6 +28,17 @@ const authLink = setContext((_, { headers }) => {
 })
 
 const client = new ApolloClient({
+  defaultOptions: {
+    watchQuery: {
+      errorPolicy: 'none'
+    },
+    query: {
+      errorPolicy: 'none'
+    },
+    mutate: {
+      errorPolicy: 'none'
+    }
+  },
     link: authLink.concat(httpLink),
     cache: new InMemoryCache()
 });

@@ -1,33 +1,33 @@
 import React, { Component } from 'react';
-import { Feed, Icon } from 'semantic-ui-react';
+import { Feed, Icon, Button } from 'semantic-ui-react';
 import { AUTH_TOKEN } from '../constants';
 import { timeDifferenceForDate } from '../utils';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
 const VOTE_MUTATION = gql`
-    mutation VoteMutation($linkId: Id!) {
-        vote(linkId: $linkId) {
-            id 
-            link { 
-                votes {
-                    id 
-                    user {
-                        id
-                    }
-                }
-            }
-            user {
-                id
-            }
+  mutation VoteMutation($linkId: ID!) {
+    vote(linkId: $linkId) {
+      id
+      link {
+        votes {
+          id
+          user {
+            id
+          }
         }
+      }
+      user {
+        id
+      }
     }
+  }
 `
 
 class Link extends Component {
   render() {
     const authToken = localStorage.getItem(AUTH_TOKEN);
-    console.log(this, 'props')
+    console.log(this.props, 'props')
     return (
       <Feed.Event style={{ padding: '10px 0px 10px 0px', backgroundColor: '#AEFFB4', margin: '5px 0 5px 0' }}>
         <Feed.Content>
@@ -46,21 +46,20 @@ class Link extends Component {
                 {timeDifferenceForDate(this.props.link.createdAt)}
               </Feed.Date>
               {authToken && (
-              <Mutation 
-                mutation={VOTE_MUTATION} 
-                variables={{ linkId: this.props.link.id }} 
-                update={(store, {data: {vote}})=> 
-                //this updates the store after every new vote to display it in real time to the user
-                this.props.updateStoreAfterVote(store, vote, this.props.link.id)
-                } 
-              >
+                <Mutation
+                  mutation={VOTE_MUTATION}
+                  variables={{ linkId: this.props.link.id }}
+                  update={(store, { data: { vote } }) =>
+                    //this updates the store after every new vote to display it in real time to the user
+                    this.props.updateStoreAfterVote(store, vote, this.props.link.id)
+                  }
+                >
                   {voteMutation => (
-
-                    <Feed.Like onClick={voteMutation}>
+                    <Button onClick={voteMutation}>
                       <Icon name='like' />
-                    </Feed.Like>
+                    </Button>
                   )}
-              </Mutation>
+                </Mutation>
               )}
             </Feed.Extra>
           </Feed.Summary>
