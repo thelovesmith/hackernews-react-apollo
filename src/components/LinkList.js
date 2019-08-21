@@ -34,7 +34,8 @@ class LinkList extends Component {
   // !Now you’re retrieving the link that the user just voted for from that list. You’re also manipulating that link by resetting its votes to the votes that were just returned by the server.
   // !You start by reading the current state of the cached data for the FEED_QUERY from the store.
   // !Finally, you take the modified data and write it back into the store
-  _updateCacheAfterVote = (store, createVote, linkId) => {
+  updateCacheAfterVote = (store, createVote, linkId) => {
+    console.log('its hitting')
     const data = store.readQuery({ query: FEED_QUERY })
 
     const votedLink = data.feed.links.find(link => link.id === linkId)
@@ -58,7 +59,7 @@ class LinkList extends Component {
                   key={link.id}
                   link={link}
                   index={index}
-                  updateStoreAfterVote={this._updateCacheAfterVote}
+                  updateStoreAfterVote={this.updateCacheAfterVote}
                 />
               ))}
             </Feed>

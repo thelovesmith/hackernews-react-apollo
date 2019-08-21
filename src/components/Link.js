@@ -51,7 +51,7 @@ class Link extends Component {
                   variables={{ linkId: this.props.link.id }}
                   update={(store, { data: { vote } }) =>
                     //this updates the store after every new vote to display it in real time to the user
-                    this.props._updateCacheAfterVote(store, vote, this.props.link.id)
+                    this.props.updateStoreAfterVote(store, vote, this.props.link.id)
                   }
                 >
                   {voteMutation => (
